@@ -482,18 +482,17 @@ jobs:
       # ---------------------------------------------------------------------
       # Step 15: Upload build logs (always, for debugging)
       # ---------------------------------------------------------------------
+
       - name: Upload build logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: AndroidForge-logs
-          path: |
-            .androidforge/logs/
-            ${{ steps.extract.outputs.project_root }}/build/outputs/
-            ${{ steps.extract.outputs.project_root }}/**/build/reports/
-            ${{ steps.extract.outputs.project_root }}/**/build/outputs/
+          path: .androidforge/logs/
           if-no-files-found: ignore
           retention-days: 14
+          compression-level: 6
+
 
       # ---------------------------------------------------------------------
       # Step 16: Diagnose failure (only on build failure)
